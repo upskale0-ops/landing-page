@@ -1,0 +1,22 @@
+<svg width="1000" height="320" viewBox="0 0 1000 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(10,25)">
+    <path d="M80 170C80 90 150 30 210 30C270 30 330 90 330 170V188H280V170C280 118 247 88 210 88C173 88 140 118 140 170V188H80V170Z" fill="#FF6B2B"/>
+    <path d="M164 154C165 90 210 52 258 52C306 52 343 91 343 148C343 183 366 215 407 230L352 252C325 236 305 219 287 196C281 206 271 213 256 213C231 213 214 198 208 176C201 194 185 205 164 205C125 205 105 176 105 138C105 96 126 69 164 66V154ZM165 94C149 95 140 107 140 129C140 155 154 172 177 172C189 172 199 167 205 157L205 102L165 94Z" fill="#3AC7C8"/>
+    <path d="M323 90C288 90 259 115 250 146C276 124 304 119 344 122C352 101 340 90 323 90Z" fill="#7BD3B8" fill-opacity="0.9"/>
+    <path d="M365 205L392 124H443L469 205H424L420 189H389L385 205H365ZM401 169H408L414 143H396L401 169Z" fill="#3AC7C8"/>
+    <path d="M473 205L521 122H581L590 150H551L543 172H588L596 200H551L558 205H473Z" fill="#3AC7C8"/>
+    <path d="M580 128H620L655 206H619L611 188H574L566 206H532L580 128ZM593 159H596L603 175H585L593 159Z" fill="#3AC7C8"/>
+    <path d="M655 204L698 132H744L760 170H733L720 204H655Z" fill="#3AC7C8"/>
+    <path d="M768 204V132H801V204H768Z" fill="#3AC7C8"/>
+    <path d="M760 102H812L840 130L812 158H760L740 130L760 102Z" fill="#FF6B2B"/>
+  </g>
+  <g transform="translate(120,150)">
+    <text x="0" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="118" font-weight="700" fill="#2BA9C6" letter-spacing="-6">Up</text>
+    <text x="182" y="90" font-family="Segoe UI, Arial, sans-serif" font-size="118" font-weight="700" fill="#2BA9C6" letter-spacing="-6">Skale</text>
+    <g transform="translate(282,10)">
+      <path d="M0 74L64 10L94 40L33 101L0 74Z" fill="#FF6B2B"/>
+      <path d="M89 40L145 40L66 110L89 40Z" fill="#7BD3B8"/>
+    </g>
+  </g>
+  <text x="315" y="260" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="500" fill="#2E8FA3" letter-spacing="1.5">empowering your digital vision</text>
+</svg>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Details | Upskale Tech Digital</title>
+  <style>
+    :root {
+      --bg: #070c0a;
+      --bg-2: #0d1714;
+      --panel: rgba(16, 25, 22, 0.9);
+      --line: rgba(201, 169, 110, 0.12);
+      --text: #edf7f1;
+      --muted: rgba(237, 247, 241, 0.72);
+      --gold: #c9a96e;
+      --gold-soft: #e4d0a6;
+      --teal: #58d1d5;
+      --blue: #71c7f5;
+      --orange: #ff6b2b;
+      --shadow: rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(113, 199, 245, 0.08), transparent 25%),
+        radial-gradient(circle at 80% 15%, rgba(201, 169, 110, 0.06), transparent 20%),
+        linear-gradient(180deg, var(--bg) 0%, #09120f 32%, #050b09 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 12, 10, 0.76);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80px;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
+    }
+
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(237, 247, 241, 0.75);
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .page {
+      padding: 54px 0 32px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.7rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 880px;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+    }
+
+    .intro {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 26px;
+      align-items: end;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 700px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat {
+      background: linear-gradient(180deg, rgba(17,24,21,0.9), rgba(13,18,16,0.8));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+    }
+
+    .stat-label {
+      font-size: 0.64rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(237,247,241,0.6);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .section {
+      margin-top: 30px;
+      padding-top: 12px;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .section-head .tag {
+      color: var(--gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(14,23,20,0.96), rgba(12,18,16,0.84));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.12);
+      padding: 28px 26px;
+    }
+
+    .two-col,
+    .three-col,
+    .list-grid,
+    .process-grid,
+    .role-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .list-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .role-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 20px;
+      background: rgba(255,255,255,0.015);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.22rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin: 0;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .card li + li { margin-top: 8px; }
+
+    .callout {
+      background: linear-gradient(135deg, rgba(255, 107, 43, 0.08), rgba(113, 199, 245, 0.08));
+      border: 1px solid rgba(255, 107, 43, 0.2);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-top: 18px;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold-soft);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+    }
+
+    .process-step:last-child { border-bottom: 0; }
+
+    .step-index {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(201,169,110,0.2);
+      color: var(--gold);
+      background: rgba(201,169,110,0.04);
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,169,110,0.15);
+      background: rgba(201,169,110,0.04);
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.68rem;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--orange) 0%, #ff8b5c 100%);
+      border-color: transparent;
+      box-shadow: 0 18px 30px rgba(255,107,43,0.22);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-item {
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--panel);
+      aspect-ratio: 16 / 10;
+      cursor: zoom-in;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover,
+    .gallery-item:focus-visible {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+      outline: none;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 48px 16px;
+      background: rgba(5, 11, 9, 0.92);
+      backdrop-filter: blur(6px);
+      cursor: zoom-out;
+    }
+
+    .lightbox[hidden] { display: none; }
+
+    .lightbox img {
+      max-width: min(1200px, 100%);
+      max-height: 100%;
+      border-radius: 14px;
+      box-shadow: 0 24px 60px var(--shadow);
+      cursor: default;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,169,110,0.3);
+      background: rgba(201,169,110,0.08);
+      color: var(--text);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      margin-top: 48px;
+      padding: 36px 0 64px;
+      text-align: center;
+      color: rgba(237,247,241,0.7);
+    }
+
+    @media (max-width: 900px) {
+      .intro,
+      .two-col,
+      .three-col,
+      .list-grid,
+      .process-grid,
+      .role-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+      }
+      .nav-links { justify-content: center; }
+      .stats { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index-4.html" class="brand" aria-label="Upskale Tech Digital home">
+        <img src="https://455bda8bf769fda6a91e35b52c125451.cdn.bubble.io/f1793266713720x431391213467715140/WhatsApp%20Image%202026-10-29%20at%2010.10.57%20AM.jpeg" alt="Upskale Tech Digital logo" />
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index-4.html">Home</a>
+        <a href="index-4.html#services">Services</a>
+        <a href="index-4.html#contact">Contact</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container page">
+    <div id="project-detail"></div>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+    <button type="button" class="lightbox-close" aria-label="Close image">×</button>
+    <img src="" alt="" />
+  </div>
+
+  <footer class="footer">
+    Upskale Tech Digital — Strategy, design, and product execution.
+  </footer>
+
+  <script>
+    const projectData = {
+      'bishop-rv-repair': {
+        title: 'Bishop RV Repair',
+        label: 'Brand + Website Experience',
+        summary: 'We repositioned Bishop RV Repair with a cleaner identity, clearer service communication, and a stronger web experience designed to increase trust and conversion.',
+        challenge: 'The business needed a stronger digital presence to communicate reliability, technical expertise, and professionalism to customers who were comparing options quickly.',
+        approach: 'We reviewed the customer journey, simplified the message hierarchy, and rebuilt the brand presentation around trust, service clarity, and a premium local-business feel.',
+        solution: 'We created a better visual identity, clearer service messaging, and a more polished website structure that made it easier to understand the value and take the next step.',
+        process: [
+          ['Discovery', 'We audited the business positioning, service offer, and user journey to identify the biggest trust and conversion gaps.'],
+          ['Messaging', 'We sharpened the brand tone and service story so the offer felt clear, credible, and more compelling.'],
+          ['Design', 'We built a cleaner digital experience that felt polished, professional, and easier to navigate.'],
+          ['Launch', 'We launched the new direction with conversion-focused structure and clear calls to action.']
+        ],
+        results: [
+          'Sharper brand perception for a more premium local service offer',
+          'Clearer customer journey and better service presentation',
+          'Improved trust and higher-quality lead engagement',
+          'A modern digital presence aligned with the business growth goal'
+        ],
+        role: [
+          'Brand direction and positioning',
+          'UX and web experience design',
+          'Messaging and conversion flow',
+          'Launch support and optimization'
+        ],
+        stats: [
+          ['Focus', 'Trust & conversion'],
+          ['Outcome', 'Clearer digital presence']
+        ]
+      },
+      'rjs-used-cars': {
+        title: "RJ's Used Cars",
+        label: 'Digital Brand Refresh',
+        summary: 'The project focused on making the business feel more credible, modern, and conversion-ready through a cleaner brand story and stronger digital positioning.',
+        challenge: 'The business needed stronger customer confidence online, especially in a market where trust and clarity strongly influence buying decisions.',
+        approach: 'We worked from the customer perspective to simplify the brand promise, clarify key offers, and improve the visual story on the web.',
+        solution: 'We designed a digital experience that looked more polished and trustworthy while giving customers a clearer route to explore inventory and take action.',
+        process: [
+          ['Research', 'We reviewed the customer experience and the business value proposition to find the weakest conversion points.'],
+          ['Positioning', 'We simplified the service story and sharpened the way the brand communicated value.'],
+          ['Experience', 'We redesigned the structure to feel more modern, dependable, and easier to navigate.'],
+          ['Delivery', 'We improved the final presentation for both desktop and mobile users with clearer flow and stronger call-to-action visibility.']
+        ],
+        results: [
+          'More credible and contemporary digital impression',
+          'Clearer buying journey and stronger customer confidence',
+          'Better presentation of inventory and key offers',
+          'Improved conversion readiness for a trust-driven market'
+        ],
+        role: [
+          'Positioning strategy',
+          'Creative direction',
+          'Interface structure',
+          'Launch refinement'
+        ],
+        stats: [
+          ['Focus', 'Brand trust'],
+          ['Outcome', 'Improved buyer confidence']
+        ]
+      },
+      'ricardo-andre-studios': {
+        title: 'Ricardo Andre Studios',
+        label: 'Creative Launch Experience',
+        summary: 'This project brought together brand storytelling, premium design, and digital structure to give the studio a more polished and memorable web presence.',
+        challenge: 'The studio needed a digital presentation that matched the quality of its creative output while making its offer easier to understand and act on.',
+        approach: 'We focused on building a premium narrative that felt creative, elevated, and structured enough to support lead generation and trust-building.',
+        solution: 'We translated the studio’s creative positioning into a stronger digital experience with refined art direction, clearer messaging, and a better user journey.',
+        process: [
+          ['Audit', 'We reviewed creative positioning, business goals, and the existing user experience.'],
+          ['Direction', 'We explored the storytelling and visual language needed to reflect the studio’s premium work.'],
+          ['Build', 'We created a cleaner digital presentation with clearer hierarchy and stronger brand tone.'],
+          ['Optimize', 'We refined the final experience to feel polished, cohesive, and conversion-ready.']
+        ],
+        results: [
+          'Premium brand storytelling and stronger visual identity',
+          'Clearer communication of the studio’s value and offer',
+          'Better digital experience across core conversion moments',
+          'A stronger premium positioning in a competitive market'
+        ],
+        role: [
+          'Creative strategy',
+          'Brand storytelling',
+          'Web design and UX',
+          'Digital polish and refinements'
+        ],
+        stats: [
+          ['Focus', 'Premium positioning'],
+          ['Outcome', 'Elevated digital presence']
+        ]
+      },
+      'tread-and-go': {
+        title: 'Tread & Go',
+        label: 'Website Experience',
+        summary: 'We gave Tread & Go a sharper, more modern web presence that presents its services clearly and makes it easy for customers to get in touch.',
+        challenge: 'The business needed a digital presence that communicated its services quickly and gave visitors confidence to choose it over competitors.',
+        approach: 'We mapped the customer journey, clarified the core service message, and designed a visual direction that felt bold, dependable, and easy to navigate.',
+        solution: 'We delivered a cleaner website experience with clear service presentation, stronger visuals, and prominent calls to action across desktop and mobile.',
+        process: [
+          ['Discovery', 'We reviewed the business goals, the services offered, and how customers make their decision.'],
+          ['Messaging', 'We simplified the service story so visitors understood the offer within seconds.'],
+          ['Design', 'We built a modern, motion-led experience that felt polished and trustworthy.'],
+          ['Launch', 'We launched with a clear structure and conversion-focused calls to action.']
+        ],
+        results: [
+          'A more modern and credible first impression',
+          'Clearer presentation of services and offers',
+          'An easier path for customers to make contact',
+          'A digital presence ready to support business growth'
+        ],
+        role: [
+          'Brand and web direction',
+          'UX and interface design',
+          'Messaging and content structure',
+          'Launch support'
+        ],
+        stats: [
+          ['Focus', 'Clarity & trust'],
+          ['Outcome', 'Modern web presence']
+        ]
+      },
+      'findmycoach': {
+        title: 'FindMyCoach',
+        label: 'Trainer Marketplace Website',
+        summary: 'FindMyCoach is a marketplace website for trainers that helps them increase their visibility, manage bookings, and understand their performance through profile analytics.',
+        challenge: 'Independent trainers often struggle to get discovered, juggle bookings across different channels, and have little insight into how their profile is performing.',
+        approach: 'We designed the marketplace around the trainer: a strong public profile to boost visibility, a simple booking flow, and clear analytics in one place.',
+        solution: 'FindMyCoach gives trainers a single platform to showcase their services, take bookings, and track profile analytics, helping them grow their client base with less admin.',
+        process: [
+          ['Discovery', 'We defined what trainers need most: visibility, easier bookings, and insight into their profile.'],
+          ['Profiles', 'We designed trainer profiles that present services clearly and help trainers stand out in the marketplace.'],
+          ['Bookings & analytics', 'We built the booking flow and profile analytics so trainers can manage clients and track performance.'],
+          ['Launch', 'We refined the marketplace experience across devices and supported the launch.']
+        ],
+        results: [
+          'Increased visibility for trainers through marketplace profiles',
+          'A simple booking flow for trainers and their clients',
+          'Profile analytics to help trainers track performance',
+          'One platform for showcasing, booking, and growing'
+        ],
+        role: [
+          'Product strategy and UX',
+          'Marketplace design and development',
+          'Booking and analytics features',
+          'Interface design and launch support'
+        ],
+        stats: [
+          ['Category', 'Trainer marketplace'],
+          ['Core features', 'Bookings & analytics']
+        ],
+        gallery: [
+          'https://drive.google.com/thumbnail?id=1NyyZCnIX4swgOpKK8iQzZvhZOLd1Efuh&sz=w2000',
+          'https://drive.google.com/thumbnail?id=154_U_z1uYzUKTDNI2MsM12QsW6q3A6n1&sz=w2000',
+          'https://drive.google.com/thumbnail?id=1S5a4Rw88YUjl-r1PRi3hXdv0xmXi72WJ&sz=w2000'
+        ]
+      },
+      'gray-rock-clarity': {
+        title: 'Gray Rock Clarity',
+        label: 'AI Web App on Bubble.io',
+        summary: 'Gray Rock is a web app built on Bubble.io designed to help users de-escalate conflict and protect their emotional well-being. It analyzes incoming text messages using AI to identify tone, intent, and potential risk levels, then suggests calm, neutral “gray rock” style responses.',
+        challenge: 'People in stressful or high-conflict conversations often struggle to see manipulation, hostility, or escalation clearly in the moment, and to reply in a way that keeps them safe and calm. This happens in personal relationships, at work, and in high-conflict situations alike.',
+        approach: 'We designed the app around a simple flow: paste in a message, get a clear AI read on its tone, intent, and risk, and receive a calm reply you can use. We built it on Bubble.io so the experience could be developed and refined quickly.',
+        solution: 'Gray Rock provides clarity in stressful conversations by highlighting manipulation, hostility, or escalation risks, then suggests neutral “gray rock” style responses that help users respond safely and thoughtfully.',
+        process: [
+          ['Discovery', 'We defined the core problem: helping users understand difficult messages and reply without escalating conflict.'],
+          ['AI analysis', 'We set up AI analysis of incoming messages to identify tone, intent, and potential risk levels.'],
+          ['Build', 'We built the web app on Bubble.io with a calm, focused interface that keeps users on track during stressful moments.'],
+          ['Launch', 'We refined the response suggestions and user flow for personal, workplace, and high-conflict use.']
+        ],
+        results: [
+          'AI analysis of tone, intent, and risk level for incoming messages',
+          'Clear highlighting of manipulation, hostility, and escalation risks',
+          'Calm, neutral “gray rock” style response suggestions',
+          'Support for personal, workplace, and high-conflict communication'
+        ],
+        role: [
+          'Product strategy and UX',
+          'Bubble.io web app development',
+          'AI message analysis integration',
+          'Interface design and launch support'
+        ],
+        stats: [
+          ['Platform', 'Bubble.io'],
+          ['Core feature', 'AI message analysis']
+        ],
+        gallery: [
+          'https://drive.google.com/thumbnail?id=1k5mDbeijhQQ7g8X03TIkxAin39Z6ChBx&sz=w2000',
+          'https://drive.google.com/thumbnail?id=1JlyPSExkHdVh-LiA93LGGGK8JnwL4ZiB&sz=w2000',
+          'https://drive.google.com/thumbnail?id=11Y8Apbmw9ap5cCHCv_I2IZ1ALxILK8Sb&sz=w2000'
+        ]
+      },
+      'ride-exuma': {
+        title: 'Ride Exuma',
+        label: 'Ride-Hailing & Delivery App',
+        summary: 'Ride Exuma is a ride-hailing and delivery app for Exuma island. In one app, users can book rides, order food from local restaurants, and arrange parcel pickups.',
+        challenge: 'Getting around Exuma, ordering food, and sending parcels usually meant juggling phone calls and separate services. Islanders and visitors needed one simple, reliable way to do all three.',
+        approach: 'We designed a single app around the three things people need most on the island: a ride, a meal, and a parcel pickup, each with its own clear, quick booking flow.',
+        solution: 'Ride Exuma brings ride booking, restaurant food ordering, and parcel delivery together in one easy-to-use app built for life on Exuma.',
+        process: [
+          ['Discovery', 'We mapped how people on Exuma get rides, order food, and send parcels today, and where the friction was.'],
+          ['Rides', 'We designed a fast ride-booking flow so users can request a ride in a few taps.'],
+          ['Food & parcels', 'We built restaurant ordering and parcel pickup flows that sit naturally alongside ride booking.'],
+          ['Launch', 'We refined the full experience across all three services and supported the launch.']
+        ],
+        results: [
+          'Ride booking for getting around the island',
+          'Food ordering from local restaurants',
+          'Parcel pickup and delivery',
+          'All three services in one app'
+        ],
+        role: [
+          'Product strategy and UX',
+          'App design and development',
+          'Ride, food, and parcel booking flows',
+          'Interface design and launch support'
+        ],
+        stats: [
+          ['Location', 'Exuma island'],
+          ['Services', 'Rides · Food · Parcels']
+        ],
+        gallery: [
+          'https://drive.google.com/thumbnail?id=1rGvyERjgfNCnFuIQ0zSkintFzgVa_GuT&sz=w2000',
+          'https://drive.google.com/thumbnail?id=18K8obgjEE1GTSOJ0bnZd06guIH75-P0b&sz=w2000',
+          'https://drive.google.com/thumbnail?id=1U7nvX1ECJ-eh_C53CF0Z_Q96OA0vSL9F&sz=w2000'
+        ]
+      },
+      'travlure': {
+        title: 'Travlure',
+        label: 'Smart Discovery App',
+        summary: 'Travlure is a smart discovery app that helps you find restaurants, bars, and local spots based on your mood and preferences. Simply enter what you’re looking for, filter by location, category, ambiance, and price range, and Travlure quickly generates personalized place recommendations.',
+        challenge: 'Finding the right place to eat or drink usually means scrolling through long lists and reviews that don’t reflect what you’re actually in the mood for.',
+        approach: 'We designed the experience around the user’s vibe: describe what you’re looking for, narrow it down with simple filters, and get recommendations fast.',
+        solution: 'Travlure makes it easy to discover the perfect spot, whether it’s a cozy cafe, a lively cocktail bar, or an upscale dining experience. Discover places that match your vibe.',
+        process: [
+          ['Discovery', 'We defined the core need: helping people find places that match their mood, not just their location.'],
+          ['Filters', 'We designed simple filters for location, category, ambiance, and price range.'],
+          ['Recommendations', 'We built the flow that turns a user’s request and filters into personalized place recommendations.'],
+          ['Launch', 'We refined the experience so results feel quick, relevant, and easy to browse.']
+        ],
+        results: [
+          'Personalized recommendations based on mood and preferences',
+          'Filtering by location, category, ambiance, and price range',
+          'Fast discovery of restaurants, bars, and local spots',
+          'Options from cozy cafes and cocktail bars to upscale dining'
+        ],
+        role: [
+          'Product strategy and UX',
+          'App design and development',
+          'Recommendation and filter flow',
+          'Interface design and launch support'
+        ],
+        stats: [
+          ['Category', 'Local discovery'],
+          ['Core feature', 'Personalized recommendations']
+        ],
+        gallery: [
+          'https://drive.google.com/thumbnail?id=1CAHi865BC0tblrUgaP09en4HpbFUUZfB&sz=w2000',
+          'https://drive.google.com/thumbnail?id=1XtCNV4Trxtz2F6AhcewyWN0-GF-CC-_D&sz=w2000'
+        ]
+      }
+    };
+
+    const slug = new URLSearchParams(window.location.search).get('project') || 'bishop-rv-repair';
+    const project = projectData[slug] || projectData['bishop-rv-repair'];
+
+    document.title = `${project.title} | Upskale Tech Digital`;
+
+    const detailRoot = document.getElementById('project-detail');
+    if (detailRoot) {
+      detailRoot.innerHTML = `
+        <div class="eyebrow">Project details</div>
+        <h1>${project.title}</h1>
+
+        <div class="intro">
+          <p>${project.summary}</p>
+          <div class="stats">
+            ${project.stats.map(stat => `
+              <div class="stat">
+                <div class="stat-label">${stat[0]}</div>
+                <div class="stat-value">${stat[1]}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="tag">How we solved it</div>
+            <h2>${project.label}</h2>
+          </div>
+          <div class="panel">
+            <div class="two-col">
+              <div class="card">
+                <h3>Challenge</h3>
+                <p>${project.challenge}</p>
+              </div>
+              <div class="card">
+                <h3>Approach</h3>
+                <p>${project.approach}</p>
+              </div>
+            </div>
+            <div class="callout">
+              <strong>Solution</strong>
+              ${project.solution}
+            </div>
+          </div>
+        </section>
+
+        ${project.gallery ? `
+        <section class="section">
+          <div class="section-head">
+            <div class="tag">Gallery</div>
+            <h2>Inside the project</h2>
+          </div>
+          <div class="gallery">
+            ${project.gallery.map((src, index) => `
+              <button type="button" class="gallery-item" data-src="${src}" aria-label="View ${project.title} image ${index + 1} full size">
+                <img src="${src}" alt="${project.title} screenshot ${index + 1}" loading="lazy" />
+              </button>
+            `).join('')}
+          </div>
+        </section>
+        ` : ''}
+
+        <section class="section">
+          <div class="section-head">
+            <div class="tag">Development process</div>
+            <h2>From strategy to launch</h2>
+          </div>
+          <div class="panel">
+            <div class="process-grid">
+              ${project.process.map(([title, text], index) => `
+                <div class="card process-step">
+                  <div class="step-index">0${index + 1}</div>
+                  <div>
+                    <h3>${title}</h3>
+                    <p>${text}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="tag">Results</div>
+            <h2>What improved</h2>
+          </div>
+          <div class="panel">
+            <div class="list-grid">
+              ${project.results.map(result => `
+                <div class="card">
+                  <p>${result}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="tag">Our role</div>
+            <h2>Strategy, design, and delivery</h2>
+          </div>
+          <div class="panel">
+            <div class="role-grid">
+              ${project.role.map(item => `
+                <div class="card">
+                  <p>${item}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </section>
+
+        <div class="actions">
+          <a class="btn primary" href="index-4.html">Back to homepage</a>
+          <a class="btn" href="https://calendly.com/upskale0/30min" target="_blank" rel="noopener">Book a consultation</a>
+        </div>
+      `;
+    }
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const closeLightbox = () => { lightbox.hidden = true; lightboxImg.src = ''; };
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        lightboxImg.src = item.dataset.src;
+        lightboxImg.alt = item.querySelector('img').alt;
+        lightbox.hidden = false;
+        lightbox.querySelector('.lightbox-close').focus();
+      });
+    });
+
+    lightbox.addEventListener('click', e => { if (e.target !== lightboxImg) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Team | Upskale Tech Digital</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+
+    :root {
+      --bg: #080f0b;
+      --bg-soft: #0d1713;
+      --panel: rgba(12, 19, 16, 0.8);
+      --panel-strong: rgba(17, 24, 20, 0.95);
+      --line: rgba(201, 169, 110, 0.12);
+      --text: #edf6f2;
+      --muted: rgba(240, 236, 228, 0.68);
+      --gold: #7ecba1;
+      --gold-dim: #4a9970;
+      --blue: #6ec6f5;
+      --blue-dim: #3a8fbf;
+      --accent: #ff6b2b;
+      --shadow: rgba(0, 0, 0, 0.28);
+      --mono: 'Space Mono', monospace;
+      --serif: 'Cormorant Garamond', serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: var(--serif);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(126, 203, 161, 0.05), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(110, 198, 245, 0.06), transparent 25%),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: linear-gradient(to bottom, rgba(8, 15, 11, 0.92), rgba(8, 15, 11, 0.72));
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 82px;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.08);
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .nav-brand img {
+      width: 42px;
+      height: 42px;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(240, 236, 228, 0.72);
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--gold);
+    }
+
+    .cta {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: var(--accent);
+      padding: 12px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 24px rgba(255,107,43,0.22);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(255,107,43,0.32);
+    }
+
+    .hero {
+      padding: 96px 0 32px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 5vw, 5.2rem);
+      line-height: 0.96;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 24px auto 0;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      line-height: 1.7;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(220px, 1fr));
+      gap: 28px;
+      padding: 44px 0 24px;
+    }
+
+    .team-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(17,24,20,0.94), rgba(8,15,11,0.95));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      min-height: 420px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(110,198,245,0.35);
+      box-shadow: 0 24px 55px rgba(0,0,0,0.28);
+    }
+
+    .avatar {
+      height: 240px;
+      display: grid;
+      place-items: center;
+      font-size: clamp(3.5rem, 6vw, 5rem);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      background: linear-gradient(135deg, rgba(126,203,161,0.12), rgba(110,198,245,0.12));
+      border-bottom: 1px solid var(--line);
+      color: var(--gold);
+    }
+
+    .info {
+      padding: 22px 20px 28px;
+    }
+
+    .role {
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .name {
+      font-size: clamp(1.5rem, 2vw, 1.9rem);
+      line-height: 1.2;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .bio {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .cta-band {
+      margin: 40px 0 80px;
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 20, 0.7);
+      padding: 30px 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .cta-band h3 {
+      margin: 0;
+      font-size: clamp(1.6rem, 2vw, 2.4rem);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .cta-band h3 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0 52px;
+      text-align: center;
+      color: rgba(240,236,228,0.55);
+      font-family: var(--mono);
+      font-size: 0.64rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        min-height: 72px;
+        gap: 18px;
+      }
+      .team-grid { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px 0;
+      }
+
+      .nav-links {
+        gap: 12px 18px;
+      }
+
+      .nav-links a {
+        font-size: 0.56rem;
+        letter-spacing: 0.12em;
+      }
+
+      .cta {
+        width: 100%;
+        text-align: center;
+      }
+
+      .team-grid { grid-template-columns: 1fr; }
+      .cta-band {
+        align-items: flex-start;
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="index-4.html" class="nav-brand" aria-label="Upskale Tech Digital home">
+        <img src="logo.svg" alt="Upskale Tech Digital logo" />
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index-4.html">Home</a>
+        <a href="index-4.html#skills">Services</a>
+        <a href="index-4.html#animation">Projects</a>
+        <a href="team.html" class="active">Team</a>
+        <a href="index-4.html#contact">Contact</a>
+      </nav>
+      <a href="https://calendly.com/upskale0/30min" target="_blank" rel="noopener" class="cta">Book a Call</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">Upskale Tech Digital · Team</div>
+      <h1>Meet the people behind <span>the momentum.</span></h1>
+      <p>We bring together strategy, design, engineering, and growth thinking to help brands launch smarter, faster, and with more clarity.</p>
+    </section>
+
+    <section class="team-grid" aria-label="Team members">
+      <article class="team-card">
+        <div class="avatar">S</div>
+        <div class="info">
+          <div class="role">Strategy Lead</div>
+          <div class="name">Strategy</div>
+          <div class="bio">Aligns business goals, positioning, and roadmaps with measurable outcomes designed for long-term traction.</div>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="avatar">D</div>
+        <div class="info">
+          <div class="role">Design Lead</div>
+          <div class="name">Design</div>
+          <div class="bio">Shapes premium interfaces, digital experiences, and brand systems that feel polished and convert with clarity.</div>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="avatar">E</div>
+        <div class="info">
+          <div class="role">Engineering Lead</div>
+          <div class="name">Engineering</div>
+          <div class="bio">Builds responsive websites, product experiences, and business tools with performance and scalability in mind.</div>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="avatar">G</div>
+        <div class="info">
+          <div class="role">Growth Partner</div>
+          <div class="name">Growth</div>
+          <div class="bio">Connects visibility, acquisition, automation, and data-driven optimization so marketing turns into measurable growth.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="cta-band" aria-label="Book a consultation">
+      <h3>Need a digital partner that moves with <em>clarity and speed</em>?</h3>
+      <a href="https://calendly.com/upskale0/30min" target="_blank" rel="noopener" class="cta">Book a Discovery Call</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Upskale Tech Digital • Strategy • Design • Development • Growth
+  </footer>
+</body>
+</html>
