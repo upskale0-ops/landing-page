@@ -182,7 +182,8 @@
     }
 
     .avatar {
-      height: 240px;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
       display: grid;
       place-items: center;
       font-size: clamp(3.5rem, 6vw, 5rem);
@@ -191,6 +192,14 @@
       background: linear-gradient(135deg, rgba(126,203,161,0.12), rgba(110,198,245,0.12));
       border-bottom: 1px solid var(--line);
       color: var(--gold);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 20%;
     }
 
     .info {
@@ -294,15 +303,17 @@
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a href="index-4.html" class="nav-brand" aria-label="Upskale Tech Digital home">
+      <a href="index.html" class="nav-brand" aria-label="Upskale Tech Digital home">
         <img src="logo.svg" alt="Upskale Tech Digital logo" />
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="index-4.html">Home</a>
-        <a href="index-4.html#skills">Services</a>
-        <a href="index-4.html#animation">Projects</a>
-        <a href="team.html" class="active">Team</a>
-        <a href="index-4.html#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Services</a>
+        <a href="index.html#animation">Projects</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="team.html" class="active" aria-current="page">Team</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
       <a href="https://calendly.com/upskale0/30min" target="_blank" rel="noopener" class="cta">Book a Call</a>
     </div>
@@ -317,38 +328,38 @@
 
     <section class="team-grid" aria-label="Team members">
       <article class="team-card">
-        <div class="avatar">S</div>
+        <div class="avatar"><img src="assets/team-marketing-strategist.jpg" alt="Marketing Strategist portrait" loading="lazy" decoding="async"></div>
         <div class="info">
-          <div class="role">Strategy Lead</div>
-          <div class="name">Strategy</div>
-          <div class="bio">Aligns business goals, positioning, and roadmaps with measurable outcomes designed for long-term traction.</div>
+          <div class="role">Marketing Strategist</div>
+          <div class="name">Marketing</div>
+          <div class="bio">Turns business goals into clear positioning, campaigns, and data-driven growth plans that bring the right customers in.</div>
         </div>
       </article>
 
       <article class="team-card">
-        <div class="avatar">D</div>
+        <div class="avatar"><img src="assets/team-uiux-designer.jpg" alt="UI/UX Designer portrait" loading="lazy" decoding="async"></div>
         <div class="info">
-          <div class="role">Design Lead</div>
+          <div class="role">UI/UX Designer</div>
           <div class="name">Design</div>
-          <div class="bio">Shapes premium interfaces, digital experiences, and brand systems that feel polished and convert with clarity.</div>
+          <div class="bio">Shapes intuitive user journeys and polished interfaces that make products easy to use and convert with clarity.</div>
         </div>
       </article>
 
       <article class="team-card">
-        <div class="avatar">E</div>
+        <div class="avatar"><img src="assets/team-nocode-developer.jpg" alt="No-Code Developer portrait" loading="lazy" decoding="async"></div>
         <div class="info">
-          <div class="role">Engineering Lead</div>
+          <div class="role">No-Code Developer</div>
+          <div class="name">No-Code</div>
+          <div class="bio">Builds web apps, automations, and business tools on platforms like Bubble.io, launching ideas quickly without compromising quality.</div>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="avatar"><img src="assets/team-fullstack-developer.jpg" alt="Full-Stack Developer portrait" loading="lazy" decoding="async"></div>
+        <div class="info">
+          <div class="role">Full-Stack Developer</div>
           <div class="name">Engineering</div>
-          <div class="bio">Builds responsive websites, product experiences, and business tools with performance and scalability in mind.</div>
-        </div>
-      </article>
-
-      <article class="team-card">
-        <div class="avatar">G</div>
-        <div class="info">
-          <div class="role">Growth Partner</div>
-          <div class="name">Growth</div>
-          <div class="bio">Connects visibility, acquisition, automation, and data-driven optimization so marketing turns into measurable growth.</div>
+          <div class="bio">Develops responsive websites, apps, and the systems behind them, from front end to back end, with performance and scalability in mind.</div>
         </div>
       </article>
     </section>

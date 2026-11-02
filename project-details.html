@@ -88,7 +88,8 @@
       color: rgba(237, 247, 241, 0.75);
     }
 
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] { color: var(--gold); }
 
     .page {
       padding: 54px 0 32px;
@@ -392,7 +393,7 @@
         justify-content: center;
         padding: 18px 0;
       }
-      .nav-links { justify-content: center; }
+      .nav-links { justify-content: center; gap: 12px 18px; }
       .stats { grid-template-columns: 1fr; }
       .gallery { grid-template-columns: 1fr; }
     }
@@ -401,14 +402,17 @@
 <body>
   <header class="topbar">
     <div class="container nav">
-      <a href="index-4.html" class="brand" aria-label="Upskale Tech Digital home">
+      <a href="index.html" class="brand" aria-label="Upskale Tech Digital home">
         <img src="https://455bda8bf769fda6a91e35b52c125451.cdn.bubble.io/f1793266713720x431391213467715140/WhatsApp%20Image%202026-10-29%20at%2010.10.57%20AM.jpeg" alt="Upskale Tech Digital logo" />
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="index-4.html">Home</a>
-        <a href="index-4.html#services">Services</a>
-        <a href="index-4.html#contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#skills">Services</a>
+        <a href="index.html#animation" aria-current="page">Projects</a>
+        <a href="index.html#reviews">Reviews</a>
         <a href="team.html">Team</a>
+        <a href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -428,124 +432,136 @@
 
   <script>
     const projectData = {
-      'bishop-rv-repair': {
-        title: 'Bishop RV Repair',
-        label: 'Brand + Website Experience',
-        summary: 'We repositioned Bishop RV Repair with a cleaner identity, clearer service communication, and a stronger web experience designed to increase trust and conversion.',
-        challenge: 'The business needed a stronger digital presence to communicate reliability, technical expertise, and professionalism to customers who were comparing options quickly.',
-        approach: 'We reviewed the customer journey, simplified the message hierarchy, and rebuilt the brand presentation around trust, service clarity, and a premium local-business feel.',
-        solution: 'We created a better visual identity, clearer service messaging, and a more polished website structure that made it easier to understand the value and take the next step.',
+      'connexpros': {
+        title: 'ConnexPros',
+        label: 'Client Portal for Financial Management',
+        summary: 'ConnexPros, a financial management enterprise, initially managed and shared client data through multiple Excel files, with other tasks scattered across different tools. Follow along to see how we transformed a clunky workflow into a seamless client portal, simplifying complex financial management for both clients and administrators.',
+        challenge: 'Client data lived in multiple Excel files that had to be shared back and forth, while billing, documents, and scheduling were spread across separate tools. Both clients and administrators lost time keeping everything in sync.',
+        approach: 'We mapped how clients and administrators actually worked day to day, then brought every task into one portal with a clear dashboard at its centre.',
+        solution: 'ConnexPros now runs on a single client portal: a dashboard showing income, expenditure, and pending invoices at a glance, with projects, billing, reports, documents, scheduling, and team management all in one place.',
         process: [
-          ['Discovery', 'We audited the business positioning, service offer, and user journey to identify the biggest trust and conversion gaps.'],
-          ['Messaging', 'We sharpened the brand tone and service story so the offer felt clear, credible, and more compelling.'],
-          ['Design', 'We built a cleaner digital experience that felt polished, professional, and easier to navigate.'],
-          ['Launch', 'We launched the new direction with conversion-focused structure and clear calls to action.']
+          ['Discovery', 'We audited the Excel files and scattered tools to understand which data and tasks clients and administrators relied on.'],
+          ['Structure', 'We organised the portal around clear sections: Dashboard, Projects, Billings, Reports, Documents, Marketing, Schedule, and Team.'],
+          ['Design', 'We designed a clean dashboard with monthly totals, an annual summary chart, recent files, upcoming schedules, and ongoing projects.'],
+          ['Launch', 'We refined the portal for both client and administrator use and supported the rollout.']
         ],
         results: [
-          'Sharper brand perception for a more premium local service offer',
-          'Clearer customer journey and better service presentation',
-          'Improved trust and higher-quality lead engagement',
-          'A modern digital presence aligned with the business growth goal'
+          'Excel files replaced by one shared client portal',
+          'Income, expenditure, and pending invoices visible at a glance',
+          'Projects, billing, documents, and schedules in one place',
+          'A simpler workflow for both clients and administrators'
         ],
         role: [
-          'Brand direction and positioning',
-          'UX and web experience design',
-          'Messaging and conversion flow',
-          'Launch support and optimization'
-        ],
-        stats: [
-          ['Focus', 'Trust & conversion'],
-          ['Outcome', 'Clearer digital presence']
-        ]
-      },
-      'rjs-used-cars': {
-        title: "RJ's Used Cars",
-        label: 'Digital Brand Refresh',
-        summary: 'The project focused on making the business feel more credible, modern, and conversion-ready through a cleaner brand story and stronger digital positioning.',
-        challenge: 'The business needed stronger customer confidence online, especially in a market where trust and clarity strongly influence buying decisions.',
-        approach: 'We worked from the customer perspective to simplify the brand promise, clarify key offers, and improve the visual story on the web.',
-        solution: 'We designed a digital experience that looked more polished and trustworthy while giving customers a clearer route to explore inventory and take action.',
-        process: [
-          ['Research', 'We reviewed the customer experience and the business value proposition to find the weakest conversion points.'],
-          ['Positioning', 'We simplified the service story and sharpened the way the brand communicated value.'],
-          ['Experience', 'We redesigned the structure to feel more modern, dependable, and easier to navigate.'],
-          ['Delivery', 'We improved the final presentation for both desktop and mobile users with clearer flow and stronger call-to-action visibility.']
-        ],
-        results: [
-          'More credible and contemporary digital impression',
-          'Clearer buying journey and stronger customer confidence',
-          'Better presentation of inventory and key offers',
-          'Improved conversion readiness for a trust-driven market'
-        ],
-        role: [
-          'Positioning strategy',
-          'Creative direction',
-          'Interface structure',
-          'Launch refinement'
-        ],
-        stats: [
-          ['Focus', 'Brand trust'],
-          ['Outcome', 'Improved buyer confidence']
-        ]
-      },
-      'ricardo-andre-studios': {
-        title: 'Ricardo Andre Studios',
-        label: 'Creative Launch Experience',
-        summary: 'This project brought together brand storytelling, premium design, and digital structure to give the studio a more polished and memorable web presence.',
-        challenge: 'The studio needed a digital presentation that matched the quality of its creative output while making its offer easier to understand and act on.',
-        approach: 'We focused on building a premium narrative that felt creative, elevated, and structured enough to support lead generation and trust-building.',
-        solution: 'We translated the studio’s creative positioning into a stronger digital experience with refined art direction, clearer messaging, and a better user journey.',
-        process: [
-          ['Audit', 'We reviewed creative positioning, business goals, and the existing user experience.'],
-          ['Direction', 'We explored the storytelling and visual language needed to reflect the studio’s premium work.'],
-          ['Build', 'We created a cleaner digital presentation with clearer hierarchy and stronger brand tone.'],
-          ['Optimize', 'We refined the final experience to feel polished, cohesive, and conversion-ready.']
-        ],
-        results: [
-          'Premium brand storytelling and stronger visual identity',
-          'Clearer communication of the studio’s value and offer',
-          'Better digital experience across core conversion moments',
-          'A stronger premium positioning in a competitive market'
-        ],
-        role: [
-          'Creative strategy',
-          'Brand storytelling',
-          'Web design and UX',
-          'Digital polish and refinements'
-        ],
-        stats: [
-          ['Focus', 'Premium positioning'],
-          ['Outcome', 'Elevated digital presence']
-        ]
-      },
-      'tread-and-go': {
-        title: 'Tread & Go',
-        label: 'Website Experience',
-        summary: 'We gave Tread & Go a sharper, more modern web presence that presents its services clearly and makes it easy for customers to get in touch.',
-        challenge: 'The business needed a digital presence that communicated its services quickly and gave visitors confidence to choose it over competitors.',
-        approach: 'We mapped the customer journey, clarified the core service message, and designed a visual direction that felt bold, dependable, and easy to navigate.',
-        solution: 'We delivered a cleaner website experience with clear service presentation, stronger visuals, and prominent calls to action across desktop and mobile.',
-        process: [
-          ['Discovery', 'We reviewed the business goals, the services offered, and how customers make their decision.'],
-          ['Messaging', 'We simplified the service story so visitors understood the offer within seconds.'],
-          ['Design', 'We built a modern, motion-led experience that felt polished and trustworthy.'],
-          ['Launch', 'We launched with a clear structure and conversion-focused calls to action.']
-        ],
-        results: [
-          'A more modern and credible first impression',
-          'Clearer presentation of services and offers',
-          'An easier path for customers to make contact',
-          'A digital presence ready to support business growth'
-        ],
-        role: [
-          'Brand and web direction',
-          'UX and interface design',
-          'Messaging and content structure',
+          'Workflow audit and product strategy',
+          'Client portal UX and interface design',
+          'Dashboard and reporting design',
           'Launch support'
         ],
         stats: [
-          ['Focus', 'Clarity & trust'],
-          ['Outcome', 'Modern web presence']
+          ['Category', 'Financial client portal'],
+          ['Outcome', 'Excel files → one portal']
+        ],
+        gallery: [
+          'assets/connexpros.webp'
+        ]
+      },
+      'fantasy-futbol': {
+        title: 'Fantasy Futbol',
+        label: 'Real-Money Fantasy Football Platform',
+        summary: 'Fantasy Futbol was a project for a client building a real-money fantasy football platform for African users.',
+        challenge: 'Football fans across Africa wanted a fantasy game they could play for real money, built around the way they watch and follow the sport. Because money is at stake, the platform also had to feel trustworthy from the very first screen.',
+        approach: 'We designed the experience around the fan: picking a team, joining contests, and following results should feel fast and exciting, while every step involving money stays clear and transparent.',
+        solution: 'Fantasy Futbol gives African football fans a real-money fantasy platform that is exciting to play and easy to trust.',
+        process: [
+          ['Discovery', 'We worked with the client to understand their African audience and what a real-money fantasy game needed to succeed.'],
+          ['Gameplay', 'We shaped the core flows for building a team, entering contests, and tracking performance.'],
+          ['Design', 'We designed an energetic, football-first interface with clear, trustworthy money moments.'],
+          ['Launch', 'We refined the experience across devices and supported the client through launch.']
+        ],
+        results: [
+          'A real-money fantasy football platform built for African users',
+          'Fast, exciting team selection and contest flows',
+          'Clear, trustworthy handling of every money moment',
+          'A football-first experience fans want to return to'
+        ],
+        role: [
+          'Product strategy and UX',
+          'Gameplay flow design',
+          'Interface design',
+          'Launch support'
+        ],
+        stats: [
+          ['Category', 'Real-money fantasy sports'],
+          ['Audience', 'Football fans in Africa']
+        ],
+        gallery: [
+          'assets/fantasy-futbol.avif'
+        ]
+      },
+      'past-lives': {
+        title: 'Past Lives',
+        label: 'Digital Memorial Archive',
+        summary: 'The Past Lives project was about building a sanctuary, a digital archive of someone’s entire existence, created by people who are grieving, remembering, healing, or celebrating a life well lived.',
+        challenge: 'Memories of a loved one are often scattered across phones, photo albums, and conversations. People who are grieving needed one calm, respectful place to gather those stories and keep them safe.',
+        approach: 'We designed the experience as a sanctuary first: a gentle, unhurried interface that helps families and friends bring a life’s moments together without feeling overwhelmed.',
+        solution: 'Past Lives gives people a lasting digital archive of a person’s life, a place to remember, heal, and celebrate together, built with the care the subject deserves.',
+        process: [
+          ['Discovery', 'We listened to how people grieve, remember, and celebrate, and what they want to preserve about a loved one.'],
+          ['Experience', 'We shaped a calm, respectful journey for building an archive of someone’s life.'],
+          ['Design', 'We created a warm, quiet visual language that lets memories, not the interface, take centre stage.'],
+          ['Launch', 'We refined the experience across devices and supported the launch.']
+        ],
+        results: [
+          'A sanctuary for preserving a person’s life story',
+          'One place for family and friends to gather memories',
+          'A gentle experience for people who are grieving or healing',
+          'A lasting way to celebrate a life well lived'
+        ],
+        role: [
+          'Product strategy and UX',
+          'Experience and interface design',
+          'Content and storytelling structure',
+          'Launch support'
+        ],
+        stats: [
+          ['Category', 'Digital memorial'],
+          ['Purpose', 'Remember · Heal · Celebrate']
+        ],
+        gallery: [
+          'assets/past-lives.avif'
+        ]
+      },
+      'zechub': {
+        title: 'ZecHub',
+        label: 'Community Dashboard Redesign',
+        summary: 'The ZecHub Dashboard serves as the central information hub for the Zcash community, connecting users to network health, governance, and ecosystem activity. The existing dashboard suffered from information overload and an outdated presentation, hindering its effectiveness in supporting ZecHub’s mission of building community, education, and investment tracking.',
+        challenge: 'The existing dashboard packed in too much information with an outdated presentation, making it hard for the Zcash community to find what mattered and limiting how well it supported community building, education, and investment tracking.',
+        approach: 'We started from what the community needed to see: network health, governance, and ecosystem activity. We then reduced the noise so each area had a clear place and purpose.',
+        solution: 'We redesigned the ZecHub Dashboard into a cleaner, modern hub that presents network health, governance, and ecosystem activity clearly, so it better supports ZecHub’s mission.',
+        process: [
+          ['Audit', 'We reviewed the existing dashboard to pinpoint where information overload and dated presentation got in the way.'],
+          ['Structure', 'We reorganised the content around network health, governance, and ecosystem activity.'],
+          ['Design', 'We created a modern, uncluttered visual presentation that makes key information easy to scan.'],
+          ['Handoff', 'We refined the experience across devices and supported implementation.']
+        ],
+        results: [
+          'Less information overload and a clearer hierarchy',
+          'A modern presentation for the Zcash community’s central hub',
+          'Easier access to network health, governance, and ecosystem activity',
+          'Better support for community building, education, and investment tracking'
+        ],
+        role: [
+          'UX audit and information architecture',
+          'Dashboard and data presentation design',
+          'Interface design',
+          'Implementation support'
+        ],
+        stats: [
+          ['Community', 'Zcash'],
+          ['Focus', 'Clarity over overload']
+        ],
+        gallery: [
+          'assets/zechub.avif'
         ]
       },
       'findmycoach': {
@@ -689,8 +705,8 @@
       }
     };
 
-    const slug = new URLSearchParams(window.location.search).get('project') || 'bishop-rv-repair';
-    const project = projectData[slug] || projectData['bishop-rv-repair'];
+    const slug = new URLSearchParams(window.location.search).get('project') || 'connexpros';
+    const project = projectData[slug] || projectData['connexpros'];
 
     document.title = `${project.title} | Upskale Tech Digital`;
 
@@ -804,7 +820,7 @@
         </section>
 
         <div class="actions">
-          <a class="btn primary" href="index-4.html">Back to homepage</a>
+          <a class="btn primary" href="index.html">Back to homepage</a>
           <a class="btn" href="https://calendly.com/upskale0/30min" target="_blank" rel="noopener">Book a consultation</a>
         </div>
       `;
