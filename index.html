@@ -2232,10 +2232,9 @@
       <p class="sec-sub">Tell us about your project and we’ll come back with ideas, a plan, and clear next steps.</p>
       <div class="sec-pills"><span>Strategy calls</span><span>Redesigns</span><span>New launches</span></div>
     </header>
-    <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/upskale0@gmail.com" method="POST">
+    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/xbggpepb" method="POST">
       <input type="hidden" name="_subject" value="New project inquiry from the Upskale website">
-      <input type="hidden" name="_template" value="table">
-      <input type="text" name="_honey" class="contact-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="text" name="_gotcha" class="contact-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="contact-row">
         <label class="contact-field">
           <span>Your name</span>
@@ -2612,7 +2611,7 @@ if (reduceMotion) {
   }
 })();
 
-// ── CONTACT FORM: send via FormSubmit without leaving the page ──
+// ── CONTACT FORM: send via Formspree without leaving the page ──
 (function(){
   const form = document.getElementById('contactForm');
   if (!form || !window.fetch) return;
@@ -2620,19 +2619,26 @@ if (reduceMotion) {
   const button = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (form.elements._honey.value) return;
+    if (form.elements._gotcha.value) return;
     button.disabled = true;
     button.textContent = 'Sending…';
     status.classList.remove('is-error');
     status.textContent = '';
     try {
-      const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      const res = await fetch(form.action, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(form)
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || data.success === 'false' || data.success === false) throw new Error(data.message || 'Request failed');
+      // Formspree rejects background (AJAX) sends while reCAPTCHA is on in the form's settings;
+      // fall back to a normal submit so the visitor completes the check on Formspree's page instead.
+      if (res.status === 403 && /recaptcha/i.test(data.error || '')) {
+        status.textContent = 'Taking you to a quick security check…';
+        HTMLFormElement.prototype.submit.call(form);
+        return;
+      }
+      if (!res.ok || data.ok === false) throw new Error((data.errors && data.errors.map(x => x.message).join(', ')) || 'Request failed');
       form.reset();
       status.textContent = 'Thanks! Your message has been sent. We’ll be in touch soon.';
     } catch (err) {
